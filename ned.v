@@ -7,6 +7,11 @@ import term
 
 const (
 	version = '0.1-alpha'
+
+)
+
+const (
+	fpath = os.resource_abs_path('RobotoMono-Regular.ttf')
 )
 
 [heap]
@@ -43,58 +48,34 @@ fn main() {
 		height: window_size.height
 		create_window: true
 		window_title: "Ned"
-		frame_fn: frame
 		user_data: ned
+		frame_fn: frame
 		init_fn: init
+		keydown_fn: keydown
+		font_path: fpath
 	)
 	ned.ctx.run()
 }
 
 
 fn init(mut ned &Ned) {
-	// app.img.img = app.ctx.create_image(os.resource_abs_path(app.file_name))
-    // app.img.pos = Vec2{60, 60}
-    // app.img.size = 2
+
+}
+
+
+fn keydown(mut ned &Ned) {
+
 }
 
 fn (mut ned Ned) draw() {
-    // app.ctx.draw_image(app.img.pos.x, app.img.pos.y, app.img.img.width*app.img.size, app.img.img.height*app.img.size, app.img.img)
+    ned.ctx.draw_text(0, 0, "Hello, NED!", gx.TextCfg{
+        size: 32,
+        align: gx.align_left,
+		color: gx.black
+    })
 }
 
 fn frame(mut ned &Ned) {
-	// app.img.vel.x = 0
-	// app.img.vel.y = 0
-
-
-	// if app.ctx.pressed_keys[int(gg.KeyCode.a)] || app.ctx.pressed_keys[int(gg.KeyCode.left)] {
-	// 	println("Left key down")
-	// 	app.img.vel.x -= speed
-	// }
-
-	// if app.ctx.pressed_keys[int(gg.KeyCode.d)] || app.ctx.pressed_keys[int(gg.KeyCode.right)] {
-	// 	println("Right key down")
-	// 	app.img.vel.x += speed
-	// }
-
-	// if app.ctx.pressed_keys[int(gg.KeyCode.w)] || app.ctx.pressed_keys[int(gg.KeyCode.up)] {
-	// 	println("Up key down")
-	// 	app.img.vel.y -= speed
-	// }
-
-	// if app.ctx.pressed_keys[int(gg.KeyCode.s)] || app.ctx.pressed_keys[int(gg.KeyCode.down)] {
-	// 	println("Down key down")
-	// 	app.img.vel.y += speed
-	// }
-
-
-	// if app.ctx.pressed_keys[int(gg.KeyCode.escape)] {
-	// 	exit(0)
-	// }
-
-	// app.img.pos.x += app.img.vel.x
-	// app.img.pos.y += app.img.vel.y
-
-
 	ned.ctx.begin()
 	ned.draw()
 	ned.ctx.end()
