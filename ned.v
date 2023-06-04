@@ -11,7 +11,7 @@ const (
 )
 
 const (
-	fpath = os.resource_abs_path('RobotoMono-Regular.ttf')
+	font_path = os.resource_abs_path('JetBrainsMono-Regular.ttf')
 )
 
 [heap]
@@ -31,12 +31,6 @@ fn main() {
 
 	mut window_size := gg.screen_size()
 
-	if window_size.width == 0 || window_size.height == 0 {
-		window_size = gg.Size { width: 800, height: 600 }
-	} else {
-		gg.toggle_fullscreen()
-	}
-
 	mut ned := &Ned {
 		ctx: 0,
 		win_size: window_size
@@ -52,7 +46,7 @@ fn main() {
 		frame_fn: frame
 		init_fn: init
 		keydown_fn: keydown
-		font_path: fpath
+		font_path: font_path
 	)
 	ned.ctx.run()
 }
@@ -63,7 +57,7 @@ fn init(mut ned &Ned) {
 }
 
 
-fn keydown(mut ned &Ned) {
+fn keydown(c gg.KeyCode, m gg.Modifier, mut ned &Ned) {
 
 }
 
@@ -71,11 +65,15 @@ fn (mut ned Ned) draw() {
     ned.ctx.draw_text(0, 0, "Hello, NED!", gx.TextCfg{
         size: 32,
         align: gx.align_left,
-		color: gx.black
+		color: gx.hex(0x3c3f63ff)
     })
 }
 
 fn frame(mut ned &Ned) {
+	if ned.ctx.pressed_keys[gg.KeyCode.escape] {
+		exit(0)
+	}
+
 	ned.ctx.begin()
 	ned.draw()
 	ned.ctx.end()
