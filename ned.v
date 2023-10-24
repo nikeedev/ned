@@ -14,7 +14,6 @@ const (
 	font_path = os.resource_abs_path('JetBrainsMono-Regular.ttf')
 )
 
-[heap]
 struct Ned {
 mut:
 	ctx &gg.Context = unsafe { nil }
@@ -23,11 +22,11 @@ mut:
 
 [console]
 fn main() {
-	if os.args.len < 2 {
-		println("ned - Nikita's code editor - v${version}")
-		println('Usage: ned <file> --[options]')
-		return
-	}
+	// if os.args.len < 2 {
+	// 	println("ned - Nikita's code editor - v${version}")
+	// 	println('Usage: ned <file> --[options]')
+	// 	return
+	// }
 
 	mut window_size := gg.screen_size()
 
@@ -61,8 +60,9 @@ fn keydown(c gg.KeyCode, m gg.Modifier, mut ned &Ned) {
 
 }
 
+[live]
 fn (mut ned Ned) draw() {
-    ned.ctx.draw_text(0, 0, "Hello, NED!", gx.TextCfg{
+    ned.ctx.draw_text(0, 0, "Hello, NED! !\"\"= == => >= << >> < > : - :=\n 0123456789", gx.TextCfg{
         size: 32,
         align: gx.align_left,
 		color: gx.hex(0x3c3f63ff)
