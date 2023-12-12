@@ -1,2 +1,4 @@
 # ned
-Nikita's editor
+Nikita's terminal editor
+
+written in `rust`
